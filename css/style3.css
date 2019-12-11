@@ -1,0 +1,133 @@
+*{
+    box-sizing: border-box;
+    padding:0;
+    margin:0;
+
+}
+.main{
+    height:100vh;
+}
+.container{
+    color:rgb(59, 59, 59);
+}
+.c-border{
+    box-sizing: border-box;
+    display: block;
+    width:100%;
+    /* height:100px; */
+    font-size:24px;
+    color:#444;
+    /* line-height: 100px; */
+    /* vertical-align:middle;  */
+    padding:0px 10px;
+}
+
+@media screen and (max-width:420px){
+    .c-border,h3{
+        font-size:16px;
+    }
+}
+/* ---------------------------------------------------- */
+.container .contents{
+    font-family: 'ZCOOL XiaoWei', serif;
+    display:inline-block;
+    width:100%;
+    font-size:24px;
+    background-color: rgba(245, 179, 242, 0.5);
+    /* height:20%; */
+    /* overflow: hidden; */
+}
+.title{
+    display: inline-block;
+    width:30%;
+    margin:20px;
+}
+.toHome{
+    display: inline-block;
+    position: absolute;
+    top:0px;
+    right:20px;
+    color:#444;
+    background-color: rgba(240, 248, 255, 0.335);
+    text-decoration: none;
+    border:2px solid #444;
+    border-radius:10px;
+    margin:10px 20px;
+    font-size:16px;
+    padding:10px;
+}
+/* ------------------------------------------ */
+
+.border{ 
+    border:2px double rgb(240, 210, 210);
+    display: inline-block;
+    width:70%;
+    margin:15px;
+    margin-right:30px;
+    float:right;
+}
+.wrapper{
+    clear: both;
+    overflow: hidden;
+    margin:20px;
+}
+.wrapper p{
+    margin:5px 30px;
+}
+.section_title{
+    font-size:1.2em;
+    margin-left:30px;
+    margin-top:20px;
+    
+}
+.section_title2{
+    font-size:1.2em;
+    margin-left:30px;
+    margin-top:20px;
+    
+}
+.section_title2::after{
+        content: "";
+        border:2px double rgb(240, 210, 210);
+        display: inline-block;
+        width:70%;
+        margin:15px;
+        margin-right:30px;
+        float:right;
+}
+/* ----------------------------------------- */
+.card{
+    border:1px solid #444;
+    margin:30px 10px 30px 50px;
+    padding:5px;
+    width:40%;
+    float:left;
+    overflow: hidden;
+    background-color: rgb(255, 245, 250);
+}
+.card_image{
+    display: block;
+    width:100%;
+    height:auto;
+    margin-bottom:10px;
+}
+.card-title{
+    font-size:1em;
+    font-weight: bold;
+    text-align: center;
+}
+.card-body{
+    padding:5px;
+}
+
+
+/* footer ------------------------------------ */
+footer{
+    width:100%;
+    height:50px;
+    background-color: #bbbbbb;
+    color: #444;
+    line-height: 50px;
+    text-align: center;
+}
+

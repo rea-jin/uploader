@@ -1,0 +1,117 @@
+.head-title {
+    font-size: 10px;
+    text-align: right;
+    background-color: burlywood;
+    padding: 3px 5px;
+}
+/* card ---------------------- */
+.m-wrap {
+    margin:0 5px;
+    background-color: rgba(255, 116, 116, 0.301);
+    height: 700px;
+}
+    @media screen and (max-width:820px){
+    .m-wrap{
+        height:360px;
+    }
+    }
+    @media screen and (max-width:580px){
+    .m-wrap{
+        height:294px;
+        }
+    }
+
+.m-card {
+    box-sizing: border-box;
+    border: 1px solid #444;
+    display: flex;
+    /* flex-wrap: wrap; */
+    align-items: stretch;
+    float: left;
+    width: 50%;
+    height: 50%;
+    background-color: rgba(201, 207, 118, 0.568);
+}
+
+.m-height {
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    width: 50%;
+    min-height: 100%;
+    overflow: hidden;
+}
+
+.m-img {
+    box-sizing: border-box;
+    display: flex;
+    max-width: 100%;
+    width: auto;
+    min-width: 250px;
+    height: auto;
+    margin: 0px auto;
+    min-height: 100%;
+    align-items: center;
+}
+    @media screen and (max-width:820px){
+        .m-img{
+            max-width:200px;
+            min-width:auto;
+        }
+    }
+    @media screen and (max-width:580px){
+        .m-img{
+            max-width:150px;
+            min-width:auto;    
+        }
+        }
+.m-body {
+    box-sizing: border-box;
+    overflow: hidden;
+    display: block;
+    width: 46%;
+    float: left;
+    margin: 10px auto;
+}
+@media screen and (max-width:580px){
+    .m-body{
+        margin:5px auto;
+        }
+    }
+
+.m-title {
+    font-size: 28px;
+    font-weight: bold;
+    text-align: center;
+}
+    @media screen and (max-width:820px){
+    .m-title{
+        font-size:24px;
+    }
+    }  
+    @media screen and (max-width:580px){
+        .m-title{
+            font-size:20px;
+            }
+        } 
+
+.m-text {
+    font-size: 20px;
+    /*禁則処理を守る*/
+    overflow-wrap: break-word;
+    /* 　　　word-wrap: break-word; */
+    width: 100%;
+    padding: 2px;
+    text-align: left;
+}
+
+@media screen and (max-width:820px) {
+    .m-text {
+        font-size: 16px;
+    }
+    @media screen and (max-width:580px){
+        .m-text{
+            font-size:12px;
+            }
+        }
+}
