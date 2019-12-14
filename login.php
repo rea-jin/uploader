@@ -45,22 +45,12 @@ if (!empty($_POST)) {
             $sesLimit = 60*60;
             // 最終ログイン日時を現在日時に
             $_SESSION['login_date'] = time(); //time関数は1970年1月1日 00:00:00 を0として、1秒経過するごとに1ずつ増加させた値が入る
-
-            // ログイン保持にチェックがある場合
-            // if($pass_save){
-            //     debug('ログイン保持にチェックがあります。');
-            //       // ログイン有効期限を1日にしてセット
-                  $_SESSION['login_limit'] = $sesLimit * 24 * 1;
-            // }else{
-            //       debug('ログイン保持にチェックはありません。');
-            //       // 次回からログイン保持しないので、ログイン有効期限を1時間後にセット
-            //       $_SESSION['login_limit'] = $sesLimit;
-            //   }
-              // ユーザーIDを格納
+            // ログイン有効期限をsesLimitにしてセット
+            $_SESSION['login_limit'] = $sesLimit;
+            // ユーザーIDを格納
             $_SESSION['user_id'] = $result['user_id'];
-            $_SESSION['msg_success']=SUC04;
-            
-            header("Location:mypage.php"); //マイページへ
+            $_SESSION['msg_success']=SUC05;
+            header("Location:mypage.php"); //マイページ
 
           }else{
             debug('パスワードがアンマッチです。');

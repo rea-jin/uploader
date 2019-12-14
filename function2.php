@@ -1,12 +1,11 @@
 <?php
  ini_set('log_errors','on');
- ini_set('error_log','php2.log');
-//  require('validation.php');
-$err_msg = array();
+ ini_set('error_log','php3.log');
+ $err_msg = array();
 
- //================================
+//===========================================================
 // デバッグ これを設定しないと、debugは使えない。というかこれ自体error_logだからそれで十分
-//================================
+//===========================================================
 //デバッグフラグ
 $debug_flg = true;
 //デバッグログ関数
@@ -17,11 +16,11 @@ if(!empty($debug_flg)){
 }
 }
 
-debug('function2.php読み込み完了');
-debug('「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「');
-// debugLogStart();
-session_start();
 
+session_start();
+// ===========================================================
+//  データベース接続
+// ===========================================================
 function dbConnect(){
     //DBへの接続準備
     $dsn = 'mysql:dbname=meshi;host=localhost;charset=utf8';
@@ -58,8 +57,34 @@ function dbConnect(){
 
 // ==============================================================
 // マイページ用関数
-// 」」」」」」」」」」」」」」」」」」」」」」」」」」」」」」」」」」」」」
-// カード情報をすべて取ってくる カードIDもあるので、新規登録後、更新するのに必要
+// ==============================================================
+// ユーザーテーブルから全て取ってくる ================================
+  function getUsers ($u_id){
+    
+    //例外処理
+    try {
+      // DBへ接続
+      $dbh = dbConnect();
+      // SQL文作成
+      $sql = 'SELECT * FROM users WHERE user_id = :u_id AND delete_flg = 0';
+      $data = array(':u_id' => $u_id);
+      // クエリ実行
+      $stmt = queryPost($dbh, $sql, $data);
+  
+      if($stmt){
+        // クエリ結果のデータを１レコード返却
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+      }else{
+        return false;
+      }
+  
+    } catch (Exception $e) {
+      error_log('エラー発生:' . $e->getMessage());
+    }
+  }
+
+// ============================================================
+// 1つのカード情報をすべて取ってくる カードIDもあるので、新規登録後、更新するのに必要
 function getCard ($u_id, $c_id){
     debug('getCardを取得します。');
     debug('ユーザーID：'.$u_id);
@@ -86,8 +111,8 @@ function getCard ($u_id, $c_id){
     }
   }
 
-
-// カード情報を取得　ユーザーIDの合うカード情報すべてを取ってくる
+// =============================================================
+// 複数のカードidを取得　ユーザーIDの合うカード情報すべてを取ってくる
 // カードが1つしかないならこれだけでいいか
 function getMyCard($u_id){
     try{
@@ -107,7 +132,9 @@ function getMyCard($u_id){
           error_log('エラー発生:' . $e->getMessage());
         }
     }
-    
+
+// ========================================================
+// 複数のカード情報全てを取ってくるÏ
     function getMyAll($u_id){
       try{
           $dbh = dbConnect();
@@ -128,15 +155,15 @@ function getMyCard($u_id){
       }
       
 
-      //================================
+//=============================================================
 // その他
-//================================
+//=============================================================
 // サニタイズ
 function sanitize($str){
     return htmlspecialchars($str,ENT_QUOTES);
   }
 
-  // フォーム入力保持
+// フォーム入力保持
   function getFormData($str, $flg = false){
 $err_msg = array();
 
@@ -315,3 +342,47 @@ function getSessionFlash($key){
     return null;
   }
 }
+
+
+
+
+ // フォーム入力保持
+ function getFormData2($str, $flg = false){
+  $err_msg = array();
+  
+      if($flg){
+        $method = $_GET;
+      }else{
+        $method = $_POST;
+      }
+
+      global $dbFormData2;
+      // ユーザーデータがある場合
+      if(!empty($dbFormData2)){
+        //フォームのエラーがある場合
+        if(!empty($err_msg[$str])){
+          //POSTにデータがある場合
+          if(isset($method[$str])){
+            return sanitize($method[$str]);
+          }else{
+            //ない場合（基本ありえない）はDBの情報を表示
+            return sanitize($dbFormData2[$str]);
+          }
+        }else{
+          //POSTにデータがあり、DBの情報と違う場合
+          if(isset($method[$str]) && $method[$str] !== $dbFormData2[$str]){
+            return sanitize($method[$str]);
+        debug('::::::::::::::::::::::::::');
+  
+          }else{
+            debug('post送信の入力保持 ***************');
+            return sanitize($dbFormData2[$str]);
+          }
+        }
+      }else{
+        if(isset($method[$str])){
+          return sanitize($method[$str]);
+        }
+      }
+    }
+  

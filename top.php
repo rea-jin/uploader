@@ -3,14 +3,14 @@ require('head.php');
 
 ?>
 <body>
-  <h1 style="text-align: right; background-color: burlywood;" class="mb-5 menu">Likerd</h1>
+  <h1 class="menu">Likerd</h1>
   
 <!-- ここから画面を切り替える -->
   <section class="js-page container-text">
   <h2>あなたの好きなものをカードにする、Like Cardを作成！<br>
         好きな食べ物、好きな場所、好きなペット、好きな映画、好きなアニメ、好きなアイドル・・・・<br>
         <span>あなたの好きなこと、教えてください！</span></h2>
-    <h3><span>画像とコメントであなただけの名刺を作成！</span><br>
+    <h3><span style="color:blanchedalmond;">画像とコメントであなただけの名刺を作成！</span><br>
         作成後は、スクリーンショットやURLをコピーして<br>
       SNSに貼り付けよう！</h3>
     

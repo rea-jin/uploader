@@ -5,9 +5,18 @@
     padding: 3px 5px;
 }
 /* card ---------------------- */
+
+.title{
+    margin-top: 10px;
+    font-size:1.5em;
+    text-align: center;
+    color:white;
+    text-shadow:2px 1px #333;
+    font-family: 'Sawarabi Gothic', sans-serif;
+}
 .m-wrap {
-    margin:0 5px;
-    background-color: rgba(255, 116, 116, 0.301);
+    margin:10px 5px 20px 5px;
+    background-color: rgba(255, 184, 151, 0.3);
     height: 700px;
 }
     @media screen and (max-width:820px){
@@ -29,16 +38,16 @@
     align-items: stretch;
     float: left;
     width: 50%;
-    height: 50%;
-    background-color: rgba(201, 207, 118, 0.568);
+    height: 42%;
+    background-color: rgba(235, 238, 192, 0.568);
 }
 
 .m-height {
     box-sizing: border-box;
     display: flex;
     align-items: center;
-    width: 50%;
-    min-height: 100%;
+    width: 60%;
+    max-height: 100%;
     overflow: hidden;
 }
 
@@ -50,7 +59,7 @@
     min-width: 250px;
     height: auto;
     margin: 0px auto;
-    min-height: 100%;
+    max-height: 100%;
     align-items: center;
 }
     @media screen and (max-width:820px){
@@ -65,11 +74,16 @@
             min-width:auto;    
         }
         }
+
+        .height{
+            height:100%;
+        }
+        
 .m-body {
     box-sizing: border-box;
     overflow: hidden;
     display: block;
-    width: 46%;
+    width: 40%;
     float: left;
     margin: 10px auto;
 }
@@ -80,23 +94,23 @@
     }
 
 .m-title {
-    font-size: 28px;
+    font-size: 24px;
     font-weight: bold;
     text-align: center;
 }
     @media screen and (max-width:820px){
     .m-title{
-        font-size:24px;
+        font-size:20px;
     }
     }  
     @media screen and (max-width:580px){
         .m-title{
-            font-size:20px;
+            font-size:14px;
             }
         } 
 
 .m-text {
-    font-size: 20px;
+    font-size: 18px;
     /*禁則処理を守る*/
     overflow-wrap: break-word;
     /* 　　　word-wrap: break-word; */
@@ -107,11 +121,11 @@
 
 @media screen and (max-width:820px) {
     .m-text {
-        font-size: 16px;
+        font-size: 14px;
     }
     @media screen and (max-width:580px){
         .m-text{
-            font-size:12px;
+            font-size:10px;
             }
         }
 }

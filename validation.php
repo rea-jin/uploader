@@ -20,7 +20,7 @@ define('MSG16', '');
 define('MSG17', '半角数字のみご利用いただけます');
 
 define('SUC04', '登録しました');
-define('SUC05','');
+define('SUC05','ログインしました');
 
 //エラーメッセージ表示
 function getErrMsg($key){

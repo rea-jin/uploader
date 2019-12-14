@@ -5,9 +5,9 @@ require('head.php');
 <body>
   <h1 style="text-align: right; background-color: burlywood;" class="mb-5 menu">Likerd</h1>
   
-<!-- 登録成功メッセージ -->
+<!-- 登録ページからの成功メッセージ -->
 <div id="js-show-msg" style="display:none;" class="msg-slide">
-      <?php echo getSessionFlash('msg_success'); ?>
+      <?php echo getSessionFlash('msg_success'); ?> 
     </div>
 
 <section class="js-page container-text">

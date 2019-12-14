@@ -26,23 +26,10 @@ $dbFormData = (!empty($u_id)&&!empty($p_id)) ? getCard($u_id, $p_id) : '';//$p_i
 // 新規登録画面か編集画面か判別用フラグ カードデータがnullなら新規
 $edit_flg = (!empty($dbFormData)) ? true : false;
 
-
-
 debug('ユーザーID:::$u_id ->'.$u_id);
 // debug('$c_id:::u_id ->'.$c_id);
 debug('$p_id:::get[c_id] ->'.$p_id);
-debug('dbformdata ->'.var_dump($dbFormData));
-
-
-// パラメータ改ざんチェック
-//================================
-// GETパラメータはあるが、改ざんされている（URLをいじくった）場合、正しい商品データが取れないのでマイページへ遷移させる
-// if(!empty($CardData) && empty($dbFormData)){
-//     debug('GETパラメータの商品IDが違います。マイページへ遷移します。');
-//     header("Location:"); //マイページへ
-//   }
-  
-
+debug('dbformdata ->'.array($dbFormData));
 
   // POST送信時処理
   //================================
@@ -66,10 +53,6 @@ debug('dbformdata ->'.var_dump($dbFormData));
     //未入力チェック
     validRequired($category, 'category');
     validRequired($name, 'name');
-    //最大文字数チェック
-    validMaxLen($category, 'category',15);
-    validMaxLen($name, 'name',15);
-    validMaxLen($comment, 'comment',100);
    
   }else{
     if($dbFormData['category'] !== $category){
@@ -78,7 +61,6 @@ debug('dbformdata ->'.var_dump($dbFormData));
       //最大文字数チェック
       validMaxLen($category, 'category',15);
     validMaxLen($name, 'name',15);
-    validMaxLen($comment, 'comment',100);
     }
     if($dbFormData['comment'] !== $comment){
       //最大文字数チェック
@@ -130,7 +112,7 @@ debug('画面表示処理終了 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 require('head.php');
 ?>
 <body>
-  <h1 style="text-align: right; background-color: burlywood;" class="mb-5 menu">Likerd</h1>
+  <h1 class="menu">Likerd</h1>
   
 
 <!-- 編集画面 -->
@@ -154,7 +136,7 @@ require('head.php');
         <label class="area-drop <?php if(!empty($err_msg['img'])) echo 'err'; ?>">
             <br>
             <h6 style="displaposition:relative; top:0; left:0; font-size:16px;">
-            clickでファイル選択orドラッグ＆ドロップ 
+            clickでファイル選択
             <!-- <br>  -->
            
           </h6>

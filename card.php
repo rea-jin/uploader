@@ -15,6 +15,8 @@ $c_id = getMyCard($u_id);
 $c_all = getMyAll($u_id);
 // GETデータを格納
 $p_id = (!empty($_GET['c_id'])) ? $_GET['c_id'] : '';
+$dbFormData2 = (!empty($u_id)) ? getCard2($_SESSION['user_id']) : '';
+
 // DBから連絡掲示板データを取得
 debug('ユーザーID取れているか' . $u_id);
 debug('カードID取れているか' . $c_id);
@@ -58,40 +60,40 @@ if (!empty($_POST)) {
   }
 
 
-  if (empty($err_msg)) {
-    debug('バリデーションOKです。');
+  // if (empty($err_msg)) {
+  //   debug('バリデーションOKです。');
 
-    //例外処理
-    try {
-      // DBへ接続
-      $dbh = dbConnect();
-      // SQL文作成
-      // 編集画面の場合はUPDATE文、新規登録画面の場合はINSERT文を生成
-      if ($edit_flg) {
-        debug('DB更新です。');
-        $sql = 'UPDATE card1 SET name = :name, category = :category, comment = :comment, img = :img WHERE user_id = :u_id AND id = :c_id';
-        $data = array(':name' => $name, ':category' => $category, ':comment' => $comment, ':img' => $img,  ':u_id' => $_SESSION['user_id'], ':c_id' => $c_id);
-      } else {
-        debug('DB新規登録です。');
-        $sql = 'insert into card1 (name, category, comment, img, user_id, create_date ) values (:name, :category,  :comment,  :img, :u_id, :date)';
-        $data = array(':name' => $name, ':category' => $category, ':comment' => $comment, ':img' => $img, ':u_id' => $_SESSION['user_id'], ':date' => date('Y-m-d H:i:s'));
-      }
-      debug('SQL：' . $sql);
-      debug('流し込みデータ：' . print_r($data, true));
-      // クエリ実行
-      $stmt = queryPost($dbh, $sql, $data);
+  //   //例外処理
+  //   try {
+  //     // DBへ接続
+  //     $dbh = dbConnect();
+  //     // SQL文作成
+  //     // 編集画面の場合はUPDATE文、新規登録画面の場合はINSERT文を生成
+  //     if ($edit_flg) {
+  //       debug('DB更新です。');
+  //       $sql = 'UPDATE card1 SET name = :name, category = :category, comment = :comment, img = :img WHERE user_id = :u_id AND id = :c_id';
+  //       $data = array(':name' => $name, ':category' => $category, ':comment' => $comment, ':img' => $img,  ':u_id' => $_SESSION['user_id'], ':c_id' => $c_id);
+  //     } else {
+  //       debug('DB新規登録です。');
+  //       $sql = 'insert into card1 (name, category, comment, img, user_id, create_date ) values (:name, :category,  :comment,  :img, :u_id, :date)';
+  //       $data = array(':name' => $name, ':category' => $category, ':comment' => $comment, ':img' => $img, ':u_id' => $_SESSION['user_id'], ':date' => date('Y-m-d H:i:s'));
+  //     }
+  //     debug('SQL：' . $sql);
+  //     debug('流し込みデータ：' . print_r($data, true));
+  //     // クエリ実行
+  //     $stmt = queryPost($dbh, $sql, $data);
 
-      // クエリ成功の場合
-      if ($stmt) {
-        $_SESSION['msg_success'] = SUC04;
-        debug('マイページへ遷移します。');
-        header("Location:mypage.php"); //マイページへ
-      }
-    } catch (Exception $e) {
-      error_log('エラー発生:' . $e->getMessage());
-      $err_msg['common'] = MSG07;
-    }
-  }
+  //     // クエリ成功の場合
+  //     if ($stmt) {
+  //       $_SESSION['msg_success'] = SUC04;
+  //       debug('マイページへ遷移します。');
+  //       header("Location:mypage.php"); //マイページへ
+  //     }
+  //   } catch (Exception $e) {
+  //     error_log('エラー発生:' . $e->getMessage());
+  //     $err_msg['common'] = MSG07;
+  //   }
+  // }
 }
 debug('画面表示処理終了 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<');
 ?>
@@ -100,14 +102,14 @@ require('head.php');
 ?>
 
 
-<h6 class="head-title">otame-shi
-
+<h6 class="head-title">Likerd
   <button class="js-change1">横スタイル</button>
   <!-- onclick="setHref('css/card.css');" -->
   <button class="js-change2">縦スタイル</button>
-  <button style=" width:50px; border:1px solid #444; " class="js-change3">縦2</button>
   <!-- onclick="setHref('css/mycard.css');" -->
+  <button style=" width:50px; border:1px solid #444; " class="js-change3">伸ばす</button>
 </h6>
+<div class="title"><?= getFormData2('title'); ?></div>
 
 <div class="wrapper c-wrapper m-wrap">
 <?php
