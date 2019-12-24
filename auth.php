@@ -13,7 +13,7 @@ if( !empty($_SESSION['login_date']) ){
     session_destroy();
     // ログインページへ
     header("Location:login-h.php");
-    
+//     改行した
   }else{
     debug('ログイン有効期限以内です。');
     //最終ログイン日時を現在日時に更新
