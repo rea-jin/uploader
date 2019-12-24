@@ -44,20 +44,14 @@ require('head.php');
       </div> 
 
       <input type="submit" class="btn btn-signup" value="ログインする">
-      <!-- <p>すでに登録済みの方はこちら</p>
-      <p>🔻</p>
-      <p>
-      <a href="card_login.php" style="text-decoration:none;">
-        <input type="button" method="post" class="btn btn-login" value="ログイン">
-      </a>
-      </p> -->
+
     </div>
   </form>
 
 
   <div class="js-menu">
     <a href="signup-h.php">
-      <p style="display:block">登録がお済みでない方はこちら</p>
+      <p style="display:block; color:white;">登録がお済みでない方はこちら</p>
       <p style="display:block">🔻</p>
       <input type="button" method="post" class="btn btn-login " value="登録画面へ">
     </a>

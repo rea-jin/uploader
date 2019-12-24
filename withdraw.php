@@ -20,13 +20,11 @@ if(!empty($_POST)){
     // SQL文作成
     $sql1 = 'UPDATE users SET  delete_flg = 1 WHERE user_id = :u_id';
     $sql2 = 'UPDATE card1 SET  delete_flg = 1 WHERE user_id = :u_id';
-    // $sql3 = 'UPDATE like SET  delete_flg = 1 WHERE user_id = :us_id';
     // データ流し込み
     $data = array(':u_id' => $_SESSION['user_id']);
     // クエリ実行
     $stmt1 = queryPost($dbh, $sql1, $data);
     $stmt2 = queryPost($dbh, $sql2, $data);
-    // $stmt3 = queryPost($dbh, $sql3, $data);
 
     // クエリ実行成功の場合（最悪userテーブルのみ削除成功していれば良しとする）
     if($stmt1){
@@ -52,7 +50,7 @@ debug('画面表示処理終了 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
     require('head.php'); 
     ?>
 <body>
-  <h1 style="text-align: right; background-color: burlywood;" class="mb-5 menu">otame-shi</h1>
+  <h1 style="text-align: right; background-color: burlywood;" class="mb-5 menu">Likerd</h1>
   
     <!-- メインコンテンツ -->
     <div id="contents" class="site-width">
@@ -71,7 +69,7 @@ debug('画面表示処理終了 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
             </div>
           </form>
         </div>
-        <a href="mypage.php">&lt; マイページに戻る</a>
+        <a href="mypage.php" style="color:yellow; text-align:center;">&lt; マイページに戻る</a>
       </section>
     </div>
 

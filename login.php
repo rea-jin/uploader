@@ -40,7 +40,6 @@ if (!empty($_POST)) {
           debug(print_r($result));
           // パスワードの照合 パスワードがハッシュにマッチするかどうかを調べるpassword_verify
           if($result!=null){ 
-          // && password_verify($pass,array_shift($result))){
             //ログイン有効期限（デフォルトを１時間とする）
             $sesLimit = 60*60;
             // 最終ログイン日時を現在日時に
@@ -62,20 +61,7 @@ if (!empty($_POST)) {
         }
       }
     }
-    debug('画面表示処理終了 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<');
- 
-
-            // クエリ成功の場合
-            // if ($stmt) {
-              //ログイン有効期限（デフォルトを１時間とする）
-              // $sesLimit = 60 * 60;
-              // 最終ログイン日時を現在日時に
-              // $_SESSION['login_date'] = time();
-              // $_SESSION['login_limit'] = $sesLimit;
-              // ユーザーIDを格納
-              // $_SESSION['user_id'] = $dbh->lastInsertId();
-         
-          }
+ }
         
 
 

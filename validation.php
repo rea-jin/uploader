@@ -9,7 +9,7 @@ define('MSG02', '');
 define('MSG03','パスワード（再入力）が合っていません');
 define('MSG04','半角英数字のみご利用いただけます');
 define('MSG05','6文字以上で入力してください');
-define('MSG06','');
+define('MSG06','最大文字数を超えています');
 define('MSG07','エラーが発生しました。しばらく経ってからやり直してください。');
 define('MSG08', 'そのニックネームは既に登録されています');
 define('MSG09', 'ニックネームまたはパスワードが違います');
@@ -35,7 +35,6 @@ function getErrMsg($key){
 //エラーメッセージ格納用の配列
 $err_msg = array();
 
-
 //バリデーション関数（未入力チェック）=====================
 function validRequired($str, $key){
     if($str === ''){ //金額フォームなどを考えると数値の０はOKにし、空文字はダメにする
@@ -43,7 +42,6 @@ function validRequired($str, $key){
       $err_msg[$key] = MSG01;
     }
   }
-
 
   //バリデーション関数（同値チェック ) =========================
   function validMatch($str1, $str2, $key){
@@ -62,7 +60,7 @@ function validRequired($str, $key){
   }
 
   //バリデーション関数（最大文字数チェック） ======================
-  function validMaxLen($str, $key, $max = 256){
+  function validMaxLen($str, $key, $max = 100){
     if(mb_strlen($str) > $max){
       global $err_msg;
       $err_msg[$key] = MSG06;

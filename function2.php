@@ -230,6 +230,7 @@ function uploadImg($file, $key){
         if (!in_array($type, [IMAGETYPE_GIF, IMAGETYPE_JPEG, IMAGETYPE_PNG], true)) 
         { // 第三引数にはtrueを設定すると厳密にチェックしてくれるので必ずつける
             throw new RuntimeException('画像形式が未対応です');
+            $err_msg['img'] = '画像形式が未対応です';
         }
   
         // ファイルデータからSHA-1ハッシュを取ってファイル名を決定し、ファイルを保存する
@@ -257,7 +258,6 @@ function uploadImg($file, $key){
     }
   }
 //画像表示用関数
-
   function showImg($path){
     if(empty($path)){
       return 'img/sample-img.png';
@@ -266,54 +266,8 @@ function uploadImg($file, $key){
     }
   }
 
-  // ========================================================
-  //GETパラメータ付与
-// $del_key : 付与から取り除きたいGETパラメータのキー
-// function appendGetParam($arr_del_key = array()){
-//   if(!empty($_GET)){
-//     $str = '?';
-//     $_GET as $key => $val
-//       if(!in_array($key,$arr_del_key,true)){ 
-//         //取り除きたいパラメータじゃない場合にurlにくっつけるパラメータを生成
-//         $str .= $key.'='.$val.'&';
-//       }
-//     }
-//     $str = mb_substr($str, 0, -1, "UTF-8");
-//     return $str;
-//   }
-
-function getCardOne($c_id){
-  debug('getCardOne:カード情報を取得します。');
-  debug('商品ID：'.$c_id);
-  //例外処理
-  try {
-    // DBへ接続
-    $dbh = dbConnect();
-    // SQL文作成 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    $sql = 'SELECT c1.id , c1.name , c1.comment, c1.category, c1.img, c1.user_id, c1.create_date, c1.update_date, u.user_name AS card1
-    -- c.name as category : nameをcategoryという名前にして、カラムを取得している
-             FROM card1 AS c1 LEFT JOIN users AS u ON u.user_id = c1.user_id WHERE c1.id = :c_id AND c1.delete_flg = 0 AND u.delete_flg = 0';
-             //pという名前に変えた、productテーブルから,p.category=idとマッチした
-             //それぞれのカラムを取得している
-              //左のproductテーブルは全て表示、カテゴリーテーブルはマッチしたものだけ表示
-    $data = array(':c_id' => $c_id);
-    // クエリ実行
-    $stmt = queryPost($dbh, $sql, $data);
-
-    if($stmt){
-      // クエリ結果のデータを１レコード返却
-      return $stmt->fetch(PDO::FETCH_ASSOC);
-    }else{
-      return false;
-    }
-
-  } catch (Exception $e) {
-    error_log('エラー発生:' . $e->getMessage());
-  }
-}
-
-
-
+// ========================================================
+//GETパラメータ付与
 // $del_key : 付与から取り除きたいGETパラメータのキー
 function appendGetParam($arr_del_key = array()){
   if(!empty($_GET)){
@@ -329,7 +283,6 @@ function appendGetParam($arr_del_key = array()){
   }
 }
 
-
 //sessionを１回だけ取得できる
 //一回取得したら消す
 //マイページリロードのたびに表示されないようにするため
@@ -342,9 +295,6 @@ function getSessionFlash($key){
     return null;
   }
 }
-
-
-
 
  // フォーム入力保持
  function getFormData2($str, $flg = false){

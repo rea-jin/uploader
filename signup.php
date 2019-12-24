@@ -52,19 +52,14 @@ if (!empty($_POST)) {
             if ($stmt) {
               //ログイン有効期限（デフォルトを１時間とする）
               // $sesLimit = 60 * 60;
-              // 最終ログイン日時を現在日時に
-              // $_SESSION['login_date'] = time();
-              // $_SESSION['login_limit'] = $sesLimit;
-              // ユーザーIDを格納
-              // $_SESSION['user_id'] = $dbh->lastInsertId();
               
-              debug('セッション変数の中身：'.print_r($_SESSION,true));
+              // debug('セッション変数の中身：'.print_r($_SESSION,true));
               $_SESSION['msg_success']=SUC04;
-              header("Location:login-h.php"); //マイページへ
+              header("Location:login-h.php"); //ログイン画面へ
             }
           } catch (Exception $e) {
             error_log('エラー発生:' . $e->getMessage());
-            // $err_msg['common'] = MSG07;
+            $err_msg['common'] = MSG07;
           }
         }
       }

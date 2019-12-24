@@ -8,19 +8,19 @@ require('head.php');
 <!-- ここから画面を切り替える -->
   <section class="js-page container-text">
   <h2>あなたの好きなものをカードにする、Like Cardを作成！<br>
-        好きな食べ物、好きな場所、好きなペット、好きな映画、好きなアニメ、好きなアイドル・・・・<br>
-        <span>あなたの好きなこと、教えてください！</span></h2>
-    <h3><span style="color:blanchedalmond;">画像とコメントであなただけの名刺を作成！</span><br>
-        作成後は、スクリーンショットやURLをコピーして<br>
-      SNSに貼り付けよう！</h3>
+        好きな食べ物、好きな場所、好きなペット、好きな映画、好きなアニメ、などなど・・・・<br>
+        <span>好きな画像で、自由にカードを作ろう！</span></h2>
+    <h3><span style="color:blanchedalmond;">画像とコメントであなただけのカードを作成！</span><br>
+        作成後は、スクリーンショットで<br>
+      SNSなどに貼り付けよう！</h3>
     
     <!-- 画像 作成した名刺 2スタイル pcとスマホ-->
     <div class="container-img "> 
-      <img src="images/blogsite.jpg" class="js-content-img1" alt="idol">
-      <img src="images/gudget.jpg" class="js-content-img2" alt="anime">
+      <img src="images/" class="js-content-img1" alt="idol">
+      <img src="images/" class="js-content-img2" alt="anime">
       </div>
 
-    <h2>それを画像やアドレスでみんなにシェアしよう！</h2>
+    <h2>あなたの事なら何でもOK！これを名刺代わりにしよう！</h2>
     <h2>ニックネームだけで登録できるよ！</h2>
     <h3>まずは登録！</h3>
     

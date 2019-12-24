@@ -6,7 +6,6 @@
 // ログインしている場合
 if( !empty($_SESSION['login_date']) ){
   debug('ログイン済みユーザーです。');
-
   // 現在日時が最終ログイン日時＋有効期限を超えていた場合
   if( ($_SESSION['login_date'] + $_SESSION['login_limit']) < time()){
     debug('ログイン有効期限オーバーです。');
@@ -21,7 +20,7 @@ if( !empty($_SESSION['login_date']) ){
     $_SESSION['login_date'] = time();
     
     //現在実行中のスクリプトファイル名がlogin-h.phpの場合
-    //$_SERVER['PHP_SELF']はドメインからのパスを返すため、今回だと「/webukatu_practice03/login.php」が返ってくるので、
+    //$_SERVER['PHP_SELF']はドメインからのパスを返す
     //さらにbasename関数を使うことでファイル名だけを取り出せる
     if(basename($_SERVER['PHP_SELF']) === 'login-h.php'){
       debug('マイページへ遷移します。');

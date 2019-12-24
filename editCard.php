@@ -15,9 +15,7 @@ require('auth.php');
 // 画面表示用データ取得
 //================================
 $u_id = $_SESSION['user_id'];
-// DBから商品データを取得
-// $c_id = getMyCard($u_id); //これはu_idのあっているものだから複数あったら最初のやつしか取れない
-// $c_id = 1;
+
 $c_all = getMyAll($u_id);// 上と同じ
 // GETデータを格納
 $p_id = (!empty($_GET['c_id'])) ? $_GET['c_id'] : '';//取れていない url煮付けて飛ばせば取れたappendgetparamが必要か
@@ -51,16 +49,15 @@ debug('dbformdata ->'.array($dbFormData));
 // 更新の場合はDBの情報と入力情報が異なる場合にバリデーションを行う
   if(empty($dbFormData)){
     //未入力チェック
-    validRequired($category, 'category');
+    // validRequired($category, 'category');
     validRequired($name, 'name');
    
   }else{
-    if($dbFormData['category'] !== $category){
-      //未入力チェック
-      validRequired($name, 'name');
+    if($dbFormData['name'] !== $name){
+
       //最大文字数チェック
-      validMaxLen($category, 'category',15);
-    validMaxLen($name, 'name',15);
+      validMaxLen($category, 'category',11);
+      validMaxLen($name, 'name',11);
     }
     if($dbFormData['comment'] !== $comment){
       //最大文字数チェック
@@ -132,33 +129,45 @@ require('head.php');
     <!-- =============================================================== -->
     <div class="row">
         <!-- 画像部分 ---------------------------->
-        <p></p>
+      
         <label class="area-drop <?php if(!empty($err_msg['img'])) echo 'err'; ?>">
             <br>
-            <h6 style="displaposition:relative; top:0; left:0; font-size:16px;">
+            <h6 style="display:block; position:relative; top:0; left:0; font-size:16px;">
             clickでファイル選択
-            <!-- <br>  -->
-           
-          </h6>
+            </h6>
             <input type="hidden" name="MAX_FILE_SIZE" value="3145728">
-            <input type="file" name="img" class="input-file" >
+            <input type="file" accept="image/*" name="img" class="input-file" >
+            <br>
             <img src="<?php echo getFormData('img'); ?>" alt="" class="prev-img"
-            style="<?php if(empty(getFormData('img'))) echo 'display:none'?>" >
-              
+            style="<?php if(empty(getFormData('img'))) echo 'display:none;'; ?>" >
+            
         </label>
+
+        <div class="area-msg">
         <?php
-        // var_dump(getFormData('img'));
-        ?>
+        if (!empty($err_msg['common'])) echo $err_msg['common'];
+        if (!empty($err_msg['category'])) echo $err_msg['category'];
+        if (!empty($err_msg['name'])) echo $err_msg['name'];
+        if (!empty($err_msg['comment'])) echo $err_msg['comment'];
+        ?> 
+      </div>
+<!--       
+        <label class=" 
+        <?php if(!empty($err_msg['category'])) echo 'err';
+              if(!empty($err_msg['name'])) echo 'err';
+              if(!empty($err_msg['comment'])) echo 'err'; ?>">
+        </label>
+         -->
         <!-- カードコメント部分 -------------------->
         <div class="card-body" style="padding:0;">
             <!--グループカテゴリータイトル  ------------------------>
             <label for="" class="input-label">
-                <p class="">グループ、カテゴリー名、種類</p><br>
+                <p class="">グループ、カテゴリー名 (必須：11文字以内)</p><br>
                 <input type="text" name="category" value="<?php echo getFormData('category'); ?>">
             </label>
             <!-- 名前 --------------------------------->
             <label for="" class="input-label">
-                <p>名前</p><br>
+                <p>名前(必須：11文字以内)</p><br>
                 <input type="text" name="name" value="<?php echo getFormData('name'); ?>">
             </label>
             <!-- コメント 期間など ------------------------->

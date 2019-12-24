@@ -51,16 +51,9 @@ require('head.php');
       </div>
 
       <input type="submit" class="btn btn-signup" value="登録する">
-      <!-- <p>すでに登録済みの方はこちら</p>
-      <p>🔻</p>
-      <p>
-      <a href="card_login.php" style="text-decoration:none;">
-        <input type="button" method="post" class="btn btn-login" value="ログイン">
-      </a>
-      </p> -->
+  
     </div>
   </form>
-
 
   <div class="js-menu">
     <a href="login-h.php">
