@@ -25,7 +25,12 @@ require('head.php');
 ?>
 
 
-<h6 class="head-title">Likerd
+<h6 class="head-title">
+  背景
+  <input type="color" class="js-color" name="bg-color" value="#fff">
+  <!-- 透明
+  <input type="number" class="js-opacity" name="number" step="0.1" min="0.1" value="1" /><br> -->
+
   <button class="js-change1">横スタイル</button>
   <!-- onclick="setHref('css/card.css');" -->
   <button class="js-change2">縦スタイル</button>
