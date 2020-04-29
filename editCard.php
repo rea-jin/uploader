@@ -138,8 +138,7 @@ require('head.php');
             <input type="hidden" name="MAX_FILE_SIZE" value="3145728">
             <input type="file" accept="image/*" name="img" class="input-file" >
             <br>
-            <img src="<?php echo getFormData('img'); ?>" alt="" class="prev-img"
-            style="<?php if(empty(getFormData('img'))) echo 'display:none;'; ?>" >
+            <img src="<?php echo getFormData('img'); ?>" alt="" class="prev-img" style="<?php if(empty(getFormData('img'))) echo 'display:none;'; ?>" >
             
         </label>
 
